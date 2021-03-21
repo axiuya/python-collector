@@ -5,8 +5,8 @@ from socketserver import UDPServer, BaseRequestHandler
 class CollectorHandler(BaseRequestHandler):
     """处理采集器的消息"""
 
-    def __init__(self):
-        pass
+    # def __init__(self):
+    #     pass
 
     def handle(self):
         print('Got connection from', self.client_address)
@@ -18,5 +18,5 @@ class CollectorHandler(BaseRequestHandler):
 
 
 if __name__ == '__main__':
-    serv = UDPServer(('', 62014), CollectorHandler)
+    serv = UDPServer(('127.0.0.1', 62014), CollectorHandler)
     serv.serve_forever()

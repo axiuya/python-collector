@@ -5,7 +5,8 @@ from libs.binary_helper import bytes_to_binary
 from libs.che_op import parse_packet, convert_to_udp, parse_file_head
 
 if __name__ == '__main__':
-    with open('D:/develop/CHE/01000402-2020_05_29-09_49_45.CHE', 'rb+') as f:
+    # with open('D:/develop/CHE/01000402-2020_05_29-09_49_45.CHE', 'rb+') as f:
+    with open('E:/0000037E-2019_11_06-14_58_46.CHE', 'rb+') as f:
         file_head = parse_file_head(f.read(576))
         print(json.dumps(file_head))
         print('deviceId:', file_head['deviceId'])
