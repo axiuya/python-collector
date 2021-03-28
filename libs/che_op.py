@@ -76,17 +76,20 @@ def parse_file_head(data):
     :param data: 文件头的字节数据
     :return: 返回解析的对象
     """
-    array = data.decode('UTF-8').rstrip().split('_')
-    return dict(manufacturer=array[0],  # 厂商名
-                deviceName=array[1],  # 设备名称
-                firmwareVersion=array[3].split(':')[1],  # 固件版本
-                hardwareVersion=array[4].split(':')[1],  # 硬件版本
-                deviceId=array[5].split(':')[1],  # 设备ID
-                resp=array[6].split(':')[1],  # 呼吸位数和采样率
-                ecg=array[7].split(':')[1],  # 心电位数和采样率
-                axes=array[8].split(':')[1],  # 三轴位数和采样率
-                spo2=array[9].split(':')[1],  # 血氧位数和采样率
-                )
+    head_str = data.decode('UTF-8')
+    if "SensEcho" in head_str:
+        array = head_str.rstrip().split('_')
+        return dict(manufacturer=array[0],  # 厂商名
+                    deviceName=array[1],  # 设备名称
+                    firmwareVersion=array[3].split(':')[1],  # 固件版本
+                    hardwareVersion=array[4].split(':')[1],  # 硬件版本
+                    deviceId=array[5].split(':')[1],  # 设备ID
+                    resp=array[6].split(':')[1],  # 呼吸位数和采样率
+                    ecg=array[7].split(':')[1],  # 心电位数和采样率
+                    axes=array[8].split(':')[1],  # 三轴位数和采样率
+                    spo2=array[9].split(':')[1],  # 血氧位数和采样率
+                    )
+    return None
 
 
 def parse_packet_sn(data, start=0):
